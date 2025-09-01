@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard – WiFi Vídeňská 7</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f2f5;
+  }
+
+  header {
+    background: #1E88E5;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    width: 300px;
+    margin: 15px;
+    padding: 20px;
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  h2 span {
+    margin-right: 10px;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  li::before {
+    content: "✔"; /* ikona */
+    color: #4CAF50;
+    margin-right: 8px;
+  }
+
+  button {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin-top: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: #d32f2f;
+  }
+
+  @media(max-width: 650px) {
+    main {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Vítejte, <span id="userName">Demo uživatel</span>!</h1>
+</header>
+
+<main>
+  <div class="card">
+    <h2><span>🏠</span>Informace o bydlení</h2>
+    <ul>
+      <li>Zítra nepoteče voda v bytě 12B</li>
+      <li>Volné byty: 3+1, 2+kk</li>
+      <li>Kontakty na správce domu</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span>🍴</span>Tipy a doporučení</h2>
+    <ul>
+      <li>Restaurace U Dvou lvů – 5 minut chůze</li>
+      <li>Park Vídeňská 7 – ideální pro procházky</li>
+      <li>Fitness centrum MetroFit – sleva 10% pro obyvatele domu</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span>🛎️</span>Další služby</h2>
+    <ul>
+      <li>Úklid společných prostor – pondělí 10:00</li>
+      <li>Balíky k vyzvednutí – recepce</li>
+      <li>Události tohoto týdne: společná snídaně v sobotu</li>
+    </ul>
+  </div>
+</main>
+
+<div style="text-align:center; padding:20px;">
+  <button onclick="logout()">Odhlásit se</button>
+</div>
+
+<script>
+// Polofunkční demo jméno uživatele
+const user = JSON.parse(localStorage.getItem('loggedInUser'));
+if(user){
+  document.getElementById('userName').textContent = user.name;
+}
+function logout(){
+  localStorage.removeItem('loggedInUser');
+  window.location.href = 'login.html';
+}
+</script>
+
+</body>
+</html>
