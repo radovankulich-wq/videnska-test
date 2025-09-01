@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Přihlášení WiFi</title>
+<style>
+  body { font-family: Arial; text-align:center; padding:50px; background:#f5f5f5; }
+  input { padding:10px; margin:5px; width:200px; }
+  button { padding:10px 20px; margin-top:10px; }
+</style>
+</head>
+<body>
+<h1>Přihlášení WiFi Vídeňská 7</h1>
+<form id="loginForm">
+  <input type="email" id="email" placeholder="Email" required><br>
+  <input type="password" id="password" placeholder="Heslo" required><br>
+  <button type="submit">Přihlásit se</button>
+</form>
+<p>Nemáte účet? <a href="register.html">Registrovat</a></p>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const user = users.find(u => u.email === email && u.password === password);
+  if(user){
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    window.location.href = 'dashboard.html';
+  } else {
+    alert('Špatný email nebo heslo');
+  }
+});
+</script>
+</body>
+</html>

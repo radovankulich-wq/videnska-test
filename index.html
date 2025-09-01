@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registrace WiFi</title>
+<style>
+  body { font-family: Arial; text-align:center; padding:50px; background:#f5f5f5; }
+  input { padding:10px; margin:5px; width:200px; }
+  button { padding:10px 20px; margin-top:10px; }
+</style>
+</head>
+<body>
+<h1>Registrace WiFi Vídeňská 7</h1>
+<form id="registerForm">
+  <input type="text" id="name" placeholder="Jméno" required><br>
+  <input type="email" id="email" placeholder="Email" required><br>
+  <input type="password" id="password" placeholder="Heslo" required><br>
+  <button type="submit">Registrovat</button>
+</form>
+<p>Už máte účet? <a href="login.html">Přihlásit se</a></p>
+
+<script>
+document.getElementById('registerForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  if(users.find(u => u.email === email)) {
+    alert('Email je již registrován');
+    return;
+  }
+  users.push({name,email,password});
+  localStorage.setItem('users', JSON.stringify(users));
+  alert('Registrace úspěšná!');
+  window.location.href = 'login.html';
+});
+</script>
+</body>
+</html>
